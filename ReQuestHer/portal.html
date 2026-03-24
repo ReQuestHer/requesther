@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Customer Portal – ReQuest Her</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary: #c97c9e;
+      --accent: #8f4f6f;
+      --bg-main: #f7f3f5;
+      --bg-soft: #fbf8fa;
+      --border: #d8cfd4;
+      --text-main: #3a2a32;
+      --text-muted: #6f5a64;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-main);
+      color: var(--text-main);
+    }
+
+    header {
+      border-bottom: 1px solid var(--border);
+      padding: 24px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px;
+      letter-spacing: 2px;
+    }
+
+    a {
+      text-decoration: none;
+      color: var(--accent);
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .portal-wrapper {
+      max-width: 420px;
+      margin: 120px auto;
+      background: white;
+      padding: 50px;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      text-align: center;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      margin-bottom: 12px;
+      font-size: 36px;
+    }
+
+    p {
+      color: var(--text-muted);
+      margin-bottom: 32px;
+    }
+
+    input {
+      width: 100%;
+      padding: 14px;
+      margin-bottom: 16px;
+      border-radius: 30px;
+      border: 1px solid var(--border);
+      font-size: 14px;
+    }
+
+    button {
+      width: 100%;
+      background: var(--primary);
+      border: none;
+      padding: 14px;
+      border-radius: 30px;
+      color: white;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: var(--accent);
+    }
+
+    .portal-footer {
+      margin-top: 24px;
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">ReQuest Her</div>
+    <a href="index.html">← Back to site</a>
+  </header>
+
+  <section class="portal-wrapper">
+    <h1>Customer Portal</h1>
+    <p>Access your account, projects, and resources</p>
+
+    <form>
+      <input type="email" placeholder="Email address" />
+      <input type="password" placeholder="Password" />
+      <button type="submit">Sign In</button>
+    </form>
+
+    <div class="portal-footer">
+      <p><a href="#">Forgot password?</a></p>
+    </div>
+  </section>
+
+</body>
+</html>

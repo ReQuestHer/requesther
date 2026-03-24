@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About – ReQuest Her</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary: #c97c9e;
+      --accent: #8f4f6f;
+      --bg-main: #f7f3f5;
+      --bg-soft: #fbf8fa;
+      --border-soft: #d8cfd4;
+      --text-main: #3a2a32;
+      --text-muted: #6f5a64;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-main);
+      color: var(--text-main);
+    }
+
+    /* Top Bar */
+    .top-bar {
+      background: var(--bg-soft);
+      padding: 10px 40px;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* Navigation */
+    header {
+      border-bottom: 1px solid var(--border-soft);
+    }
+
+    .nav {
+      max-width: 1200px;
+      margin: auto;
+      padding: 24px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      letter-spacing: 3px;
+    }
+
+    .nav ul {
+      list-style: none;
+      display: flex;
+      gap: 24px;
+    }
+
+    .nav a {
+      text-decoration: none;
+      font-size: 13px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--text-main);
+    }
+
+    /* Page Hero */
+    .page-hero {
+      background: var(--primary);
+      padding: 80px 40px;
+      text-align: center;
+      color: white;
+    }
+
+    .page-hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 56px;
+      margin-bottom: 12px;
+    }
+
+    .page-hero p {
+      font-size: 14px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      opacity: 0.9;
+    }
+
+    /* Content */
+    .content {
+      max-width: 900px;
+      margin: 80px auto;
+      padding: 0 40px;
+      line-height: 1.8;
+    }
+
+    .content h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 36px;
+      margin-bottom: 20px;
+    }
+
+    .content p {
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .nav ul {
+        display: none;
+      }
+
+      .page-hero h1 {
+        font-size: 42px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Bar -->
+  <div class="top-bar">
+    <span>The free guide · add your creative lead magnet</span>
+    <div class="top-links">
+      <a href="portal.html">Customer Portal</a>
+      <a href="questhers.html">QuestHers Login</a>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <header>
+    <nav class="nav">
+      <div class="logo">ReQuest Her</div>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <h1>About</h1>
+    <p>Who we are & what we believe</p>
+  </section>
+
+  <!-- Main Content -->
+  <section class="content">
+    <h2>Our Story</h2>
+    <p>
+      We are a creative studio focused on thoughtful branding, strategy,
+      and design for modern businesses looking to grow with intention.
+    </p>
+
+    <p>
+      Our work blends aesthetics and clarity to help brands feel aligned,
+      confident, and timeless.
+    </p>
+  </section>
+
+</body>
+</html>

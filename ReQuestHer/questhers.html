@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QuestHers – Login</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary: #c97c9e;
+      --accent: #8f4f6f;
+      --bg-main: #f7f3f5;
+      --bg-soft: #fbf8fa;
+      --border: #d8cfd4;
+      --text-main: #3a2a32;
+      --text-muted: #6f5a64;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #f7f3f5, #fbf8fa);
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    .questhers-card {
+      background: white;
+      padding: 60px;
+      width: 420px;
+      border-radius: 16px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.06);
+      text-align: center;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 38px;
+      margin-bottom: 10px;
+    }
+
+    p {
+      color: var(--text-muted);
+      margin-bottom: 30px;
+    }
+
+    input {
+      width: 100%;
+      padding: 14px;
+      margin-bottom: 16px;
+      border-radius: 30px;
+      border: 1px solid var(--border);
+      font-size: 14px;
+    }
+
+    .primary-btn {
+      width: 100%;
+      background: var(--primary);
+      border: none;
+      padding: 14px;
+      border-radius: 30px;
+      color: white;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      cursor: pointer;
+      margin-bottom: 16px;
+    }
+
+    .secondary-btn {
+      width: 100%;
+      background: transparent;
+      border: 1px solid var(--accent);
+      padding: 14px;
+      border-radius: 30px;
+      color: var(--accent);
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      cursor: pointer;
+    }
+
+    .primary-btn:hover,
+    .secondary-btn:hover {
+      opacity: 0.85;
+    }
+
+    .questhers-footer {
+      margin-top: 24px;
+      font-size: 13px;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+  <section class="questhers-card">
+    <h1>QuestHers</h1>
+    <p>A space for women on a journey of growth & purpose</p>
+
+    <form>
+      <input type="email" placeholder="Email address" />
+      <input type="password" placeholder="Password" />
+      <button class="primary-btn">Log In</button>
+    </form>
+
+    <button class="secondary-btn">Create an Account</button>
+
+    <div class="questhers-footer">
+      <p><a href="index.html">← ReQuest Her</a></p>
+    </div>
+  </section>
+
+</body>
+</html>

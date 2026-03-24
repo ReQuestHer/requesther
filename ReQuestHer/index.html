@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ReQuest Her</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      /* Brand */
+      --blue: #c97c9e;        /* Primary rose mauve */
+      --accent: #8f4f6f;     /* Deeper plum */
+
+      /* Backgrounds */
+      --cream: #f7f3f5;
+      --soft-gray: #d8cfd4;
+
+      /* Text */
+      --dark: #3a2a32;
+
+      /* Optional accents */
+      --sage: #b7c4bd;
+      --sand: #e6d3cb;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--cream);
+      color: var(--dark);
+    }
+
+    /* Top Utility Bar */
+    .top-bar {
+      background: #fbf8fa;
+      font-size: 12px;
+      padding: 10px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* Navigation */
+    header {
+      background: var(--cream);
+      border-bottom: 1px solid var(--soft-gray);
+    }
+
+    .nav {
+      max-width: 1200px;
+      margin: auto;
+      padding: 24px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav ul {
+      display: flex;
+      list-style: none;
+      gap: 24px;
+    }
+
+    .nav a {
+      text-decoration: none;
+      color: var(--dark);
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      letter-spacing: 3px;
+    }
+
+    /* Hero Section */
+    .hero {
+      background: var(--blue);
+      padding: 80px 40px;
+    }
+
+    .hero-inner {
+      max-width: 1200px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .hero-text small {
+      font-style: italic;
+      font-size: 16px;
+      opacity: 0.9;
+      color: #fff;
+    }
+
+    .hero-text h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 72px;
+      line-height: 1;
+      margin: 20px 0;
+      color: white;
+    }
+
+    .hero-text p {
+      font-size: 14px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 32px;
+      color: #f3e6ec;
+    }
+
+    .btn {
+      background: white;
+      color: var(--accent);
+      border: none;
+      padding: 14px 28px;
+      border-radius: 30px;
+      font-size: 12px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .btn:hover {
+      background: var(--accent);
+      color: white;
+    }
+
+    .hero-image img {
+      width: 100%;
+      border-radius: 6px;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .hero-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-text h1 {
+        font-size: 52px;
+      }
+
+      .nav ul {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+ <div class="top-bar">
+  <span>Let Us Help You</span>
+  <div class="top-links">
+    <a href="portal.html">Customer Portal</a>
+    <a href="questhers.html">QuestHers Login</a>
+  </div>
+</div>
+
+
+  <header>
+    <nav class="nav">
+      <div class="logo">ReQuest Her</div>
+     <ul>
+  <li><a href="index.html">Home</a></li>
+  <li><a href="about.html">About</a></li>
+  <li><a href="services.html">Services</a></li>
+  <li><a href="contact.html">Contact</a></li>
+</ul>
+
+  </header>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-text">
+        <small>slogan</small>
+        <h1>ReQuest<br>Her</h1>
+        <p>Design · Strategy · Branding</p>
+        <button class="btn">Get Started</button>
+      </div>
+      <div class="hero-image">
+        <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee" alt="Cape Town">
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>
