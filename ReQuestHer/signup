@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create Account – ReQuest Her</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #c97c9e;
+      --accent: #8f4f6f;
+      --bg-main: #f7f3f5;
+      --bg-soft: #fbf8fa;
+      --border: #d8cfd4;
+      --text-main: #3a2a32;
+      --text-muted: #6f5a64;
+      --error: #c0392b;
+      --error-bg: #fdf0ef;
+      --error-border: #e8b4b0;
+      --success: #2e7d52;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-main);
+      color: var(--text-main);
+      min-height: 100vh;
+    }
+    header {
+      border-bottom: 1px solid var(--border);
+      padding: 24px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: white;
+    }
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px;
+      letter-spacing: 2px;
+      color: var(--text-main);
+    }
+    a {
+      text-decoration: none;
+      color: var(--accent);
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .portal-wrapper {
+      max-width: 440px;
+      margin: 80px auto 40px;
+      background: white;
+      padding: 50px;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      text-align: center;
+    }
+    h1 {
+      font-family: 'Playfair Display', serif;
+      margin-bottom: 10px;
+      font-size: 34px;
+      color: var(--text-main);
+    }
+    .subtitle {
+      color: var(--text-muted);
+      margin-bottom: 32px;
+      font-size: 14px;
+    }
+
+    /* Field wrapper */
+    .field {
+      margin-bottom: 16px;
+      text-align: left;
+    }
+    .field label {
+      display: block;
+      font-size: 12px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+      padding-left: 4px;
+    }
+    .field input {
+      width: 100%;
+      padding: 14px 18px;
+      border-radius: 30px;
+      border: 1px solid var(--border);
+      font-size: 14px;
+      font-family: 'Inter', sans-serif;
+      color: var(--text-main);
+      background: var(--bg-soft);
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none;
+    }
+    .field input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(201, 124, 158, 0.12);
+      background: white;
+    }
+    .field input.input-error {
+      border-color: var(--error-border);
+      background: var(--error-bg);
+    }
+    .field input.input-error:focus {
+      box-shadow: 0 0 0 3px rgba(192, 57, 43, 0.1);
+    }
+
+    /* Inline field error */
+    .field-error {
+      display: none;
+      font-size: 12px;
+      color: var(--error);
+      margin-top: 6px;
+      padding-left: 14px;
+    }
+    .field-error.visible {
+      display: block;
+    }
+
+    /* Password rules hint */
+    .password-rules {
+      font-size: 12px;
+      color: var(--text-muted);
+      padding-left: 14px;
+      margin-top: 6px;
+      line-height: 1.6;
+      display: none;
+    }
+    .password-rules.visible {
+      display: block;
+    }
+    .rule {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .rule::before {
+      content: '○';
+      font-size: 10px;
+      color: var(--border);
+    }
+    .rule.met::before {
+      content: '●';
+      color: var(--primary);
+    }
+
+    /* Global form error banner */
+    .form-error-banner {
+      display: none;
+      background: var(--error-bg);
+      border: 1px solid var(--error-border);
+      border-radius: 10px;
+      padding: 12px 16px;
+      font-size: 13px;
+      color: var(--error);
+      margin-bottom: 20px;
+      text-align: left;
+    }
+    .form-error-banner.visible {
+      display: block;
+    }
+
+    button[type="submit"] {
+      width: 100%;
+      background: var(--primary);
+      border: none;
+      padding: 14px;
+      border-radius: 30px;
+      color: white;
+      font-size: 13px;
+      font-family: 'Inter', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      cursor: pointer;
+      margin-top: 8px;
+      transition: background 0.2s, transform 0.1s;
+    }
+    button[type="submit"]:hover {
+      background: var(--accent);
+    }
+    button[type="submit"]:active {
+      transform: scale(0.98);
+    }
+    button[type="submit"]:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .portal-footer {
+      margin-top: 28px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+    .portal-footer a {
+      font-size: 13px;
+    }
+
+    /* Divider */
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 24px 0;
+      color: var(--border);
+      font-size: 12px;
+    }
+    .divider::before,
+    .divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* Success state */
+    .success-screen {
+      display: none;
+      text-align: center;
+      padding: 20px 0;
+    }
+    .success-screen.visible {
+      display: block;
+    }
+    .success-icon {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      font-size: 26px;
+    }
+    .success-screen h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px;
+      margin-bottom: 10px;
+    }
+    .success-screen p {
+      color: var(--text-muted);
+      font-size: 14px;
+      margin-bottom: 28px;
+    }
+    .btn-continue {
+      display: inline-block;
+      background: var(--primary);
+      color: white;
+      padding: 14px 36px;
+      border-radius: 30px;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      cursor: pointer;
+      border: none;
+      font-family: 'Inter', sans-serif;
+      transition: background 0.2s;
+    }
+    .btn-continue:hover {
+      background: var(--accent);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">ReQuest Her</div>
+    <a href="index.html">← Back to site</a>
+  </header>
+
+  <section class="portal-wrapper">
+
+    <!-- Sign Up Form -->
+    <div id="signup-form-section">
+      <h1>Create Account</h1>
+      <p class="subtitle">Join ReQuest Her and access your personalised portal</p>
+
+      <!-- Global error banner (e.g. duplicate email) -->
+      <div class="form-error-banner" id="global-error"></div>
+
+      <form id="signup-form" novalidate>
+
+        <div class="field">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" placeholder="you@example.com" autocomplete="email" />
+          <div class="field-error" id="email-error"></div>
+        </div>
+
+        <div class="field">
+          <label for="password">Password</label>
+          <input type="password" id="password" placeholder="Min. 8 characters" autocomplete="new-password" />
+          <div class="field-error" id="password-error"></div>
+          <div class="password-rules" id="password-rules">
+            <div class="rule" id="rule-length">At least 8 characters</div>
+            <div class="rule" id="rule-upper">One uppercase letter</div>
+            <div class="rule" id="rule-number">One number</div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="confirm-password">Confirm Password</label>
+          <input type="password" id="confirm-password" placeholder="Re-enter your password" autocomplete="new-password" />
+          <div class="field-error" id="confirm-error"></div>
+        </div>
+
+        <button type="submit" id="submit-btn">Create My Account</button>
+      </form>
+
+      <div class="divider">or</div>
+
+      <div class="portal-footer">
+        Already have an account? <a href="portal.html">Sign in</a>
+      </div>
+    </div>
+
+    <!-- Success Screen -->
+    <div class="success-screen" id="success-screen">
+      <div class="success-icon">✓</div>
+      <h2>Welcome aboard!</h2>
+      <p>Your account has been created. Let's set up your profile.</p>
+      <button class="btn-continue" onclick="window.location.href='profile-setup.html'">Set Up My Profile →</button>
+    </div>
+
+  </section>
+
+  <script>
+    // Simulated list of existing emails (replace with real backend check)
+    const existingEmails = ['test@example.com', 'hello@requesther.com'];
+
+    const form = document.getElementById('signup-form');
+    const emailInput = document.getElementById('email');
+    const passwordInput = document.getElementById('password');
+    const confirmInput = document.getElementById('confirm-password');
+
+    const globalError = document.getElementById('global-error');
+    const emailError = document.getElementById('email-error');
+    const passwordError = document.getElementById('password-error');
+    const confirmError = document.getElementById('confirm-error');
+    const passwordRules = document.getElementById('password-rules');
+
+    // Show password rules on focus
+    passwordInput.addEventListener('focus', () => {
+      passwordRules.classList.add('visible');
+    });
+
+    // Live password rule checking
+    passwordInput.addEventListener('input', () => {
+      const val = passwordInput.value;
+      toggleRule('rule-length', val.length >= 8);
+      toggleRule('rule-upper', /[A-Z]/.test(val));
+      toggleRule('rule-number', /[0-9]/.test(val));
+    });
+
+    function toggleRule(id, met) {
+      const el = document.getElementById(id);
+      if (met) el.classList.add('met');
+      else el.classList.remove('met');
+    }
+
+    // Clear errors on input
+    emailInput.addEventListener('input', () => clearFieldError(emailInput, emailError));
+    passwordInput.addEventListener('input', () => clearFieldError(passwordInput, passwordError));
+    confirmInput.addEventListener('input', () => clearFieldError(confirmInput, confirmError));
+
+    function clearFieldError(input, errorEl) {
+      input.classList.remove('input-error');
+      errorEl.textContent = '';
+      errorEl.classList.remove('visible');
+      globalError.textContent = '';
+      globalError.classList.remove('visible');
+    }
+
+    function showFieldError(input, errorEl, message) {
+      input.classList.add('input-error');
+      errorEl.textContent = message;
+      errorEl.classList.add('visible');
+    }
+
+    function isValidEmail(email) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
+
+    function validatePassword(password) {
+      const errors = [];
+      if (password.length < 8) errors.push('at least 8 characters');
+      if (!/[A-Z]/.test(password)) errors.push('one uppercase letter');
+      if (!/[0-9]/.test(password)) errors.push('one number');
+      return errors;
+    }
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const email = emailInput.value.trim();
+      const password = passwordInput.value;
+      const confirm = confirmInput.value;
+      let valid = true;
+
+      // Validate email
+      if (!email) {
+        showFieldError(emailInput, emailError, 'Please enter your email address.');
+        valid = false;
+      } else if (!isValidEmail(email)) {
+        showFieldError(emailInput, emailError, 'Please enter a valid email address.');
+        valid = false;
+      } else if (existingEmails.includes(email.toLowerCase())) {
+        // Duplicate email — global banner
+        globalError.textContent = 'An account with this email already exists.';
+        globalError.classList.add('visible');
+        emailInput.classList.add('input-error');
+        valid = false;
+      }
+
+      // Validate password
+      const pwErrors = validatePassword(password);
+      if (!password) {
+        showFieldError(passwordInput, passwordError, 'Please enter a password.');
+        passwordRules.classList.add('visible');
+        valid = false;
+      } else if (pwErrors.length > 0) {
+        showFieldError(
+          passwordInput,
+          passwordError,
+          `Password must include: ${pwErrors.join(', ')}.`
+        );
+        passwordRules.classList.add('visible');
+        valid = false;
+      }
+
+      // Validate confirm password
+      if (!confirm) {
+        showFieldError(confirmInput, confirmError, 'Please confirm your password.');
+        valid = false;
+      } else if (confirm !== password) {
+        showFieldError(confirmInput, confirmError, 'Passwords do not match.');
+        valid = false;
+      }
+
+      if (!valid) return;
+
+      // All good — simulate account creation
+      const btn = document.getElementById('submit-btn');
+      btn.textContent = 'Creating account…';
+      btn.disabled = true;
+
+      setTimeout(() => {
+        document.getElementById('signup-form-section').style.display = 'none';
+        document.getElementById('success-screen').classList.add('visible');
+      }, 1000);
+    });
+  </script>
+</body>
+</html>
