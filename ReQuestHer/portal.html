@@ -4,9 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Customer Portal – ReQuest Her</title>
-
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
-
   <style>
     :root {
       --primary: #c97c9e;
@@ -16,30 +14,29 @@
       --border: #d8cfd4;
       --text-main: #3a2a32;
       --text-muted: #6f5a64;
+      --error: #c0392b;
+      --error-bg: #fdf0ef;
+      --error-border: #e8b4b0;
     }
-
     * { box-sizing: border-box; margin: 0; padding: 0; }
-
     body {
       font-family: 'Inter', sans-serif;
       background: var(--bg-main);
       color: var(--text-main);
     }
-
     header {
       border-bottom: 1px solid var(--border);
       padding: 24px 40px;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      background: white;
     }
-
     .logo {
       font-family: 'Playfair Display', serif;
       font-size: 26px;
       letter-spacing: 2px;
     }
-
     a {
       text-decoration: none;
       color: var(--accent);
@@ -47,7 +44,6 @@
       text-transform: uppercase;
       letter-spacing: 1px;
     }
-
     .portal-wrapper {
       max-width: 420px;
       margin: 120px auto;
@@ -57,28 +53,64 @@
       box-shadow: 0 10px 30px rgba(0,0,0,0.05);
       text-align: center;
     }
-
     h1 {
       font-family: 'Playfair Display', serif;
       margin-bottom: 12px;
       font-size: 36px;
     }
-
-    p {
+    .subtitle {
       color: var(--text-muted);
       margin-bottom: 32px;
+      font-size: 14px;
     }
-
-    input {
-      width: 100%;
-      padding: 14px;
+    .field {
       margin-bottom: 16px;
+      text-align: left;
+    }
+    .field label {
+      display: block;
+      font-size: 12px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+      padding-left: 4px;
+    }
+    .field input {
+      width: 100%;
+      padding: 14px 18px;
       border-radius: 30px;
       border: 1px solid var(--border);
       font-size: 14px;
+      font-family: 'Inter', sans-serif;
+      color: var(--text-main);
+      background: var(--bg-soft);
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none;
     }
-
-    button {
+    .field input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(201, 124, 158, 0.12);
+      background: white;
+    }
+    .field input.input-error {
+      border-color: var(--error-border);
+      background: var(--error-bg);
+    }
+    .form-error-banner {
+      display: none;
+      background: var(--error-bg);
+      border: 1px solid var(--error-border);
+      border-radius: 10px;
+      padding: 12px 16px;
+      font-size: 13px;
+      color: var(--error);
+      margin-bottom: 20px;
+      text-align: left;
+    }
+    .form-error-banner.visible { display: block; }
+    button[type="submit"] {
       width: 100%;
       background: var(--primary);
       border: none;
@@ -86,23 +118,26 @@
       border-radius: 30px;
       color: white;
       font-size: 13px;
+      font-family: 'Inter', sans-serif;
       text-transform: uppercase;
       letter-spacing: 1px;
       cursor: pointer;
+      margin-top: 8px;
+      transition: background 0.2s, transform 0.1s;
     }
-
-    button:hover {
-      background: var(--accent);
-    }
-
+    button[type="submit"]:hover { background: var(--accent); }
+    button[type="submit"]:active { transform: scale(0.98); }
+    button[type="submit"]:disabled { opacity: 0.6; cursor: not-allowed; }
     .portal-footer {
       margin-top: 24px;
       font-size: 13px;
+      color: var(--text-muted);
     }
+    .portal-footer p { margin-top: 10px; }
+    .portal-footer a { font-size: 13px; }
   </style>
 </head>
 <body>
-
   <header>
     <div class="logo">ReQuest Her</div>
     <a href="index.html">← Back to site</a>
@@ -110,20 +145,92 @@
 
   <section class="portal-wrapper">
     <h1>Customer Portal</h1>
-    <p>Access your account, projects, and resources</p>
+    <p class="subtitle">Access your account, projects, and resources</p>
 
-    <form>
-      <input type="email" placeholder="Email address" />
-      <input type="password" placeholder="Password" />
-      <button type="submit">Sign In</button>
+    <div class="form-error-banner" id="global-error"></div>
+
+    <form id="login-form" novalidate>
+      <div class="field">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" placeholder="you@example.com" autocomplete="email" />
+      </div>
+      <div class="field">
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="Your password" autocomplete="current-password" />
+      </div>
+      <button type="submit" id="submit-btn">Sign In</button>
     </form>
 
     <div class="portal-footer">
-  <p><a href="#">Forgot password?</a></p>
-  <p style="margin-top: 12px;">Don't have an account? <a href="signup.html">Create one</a></p>
-</div>
+      <p><a href="#">Forgot password?</a></p>
+      <p>Don't have an account? <a href="signup.html">Create one</a></p>
     </div>
   </section>
 
+  <!-- Supabase SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    const SUPABASE_URL = 'https://qqyiiytznfbfqotiscqx.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFxeWlpeXR6bmZiZnFvdGlzY3F4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzYwODMyOTgsImV4cCI6MjA5MTY1OTI5OH0.8VZzqBVw5FWCuEIw0WfRuyyXc8LaM1x4OtNN3whQTFs';
+    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    const form = document.getElementById('login-form');
+    const emailInput = document.getElementById('email');
+    const passwordInput = document.getElementById('password');
+    const globalError = document.getElementById('global-error');
+
+    function showError(message) {
+      globalError.textContent = message;
+      globalError.classList.add('visible');
+      emailInput.classList.add('input-error');
+      passwordInput.classList.add('input-error');
+    }
+
+    function clearError() {
+      globalError.textContent = '';
+      globalError.classList.remove('visible');
+      emailInput.classList.remove('input-error');
+      passwordInput.classList.remove('input-error');
+    }
+
+    emailInput.addEventListener('input', clearError);
+    passwordInput.addEventListener('input', clearError);
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const email = emailInput.value.trim();
+      const password = passwordInput.value;
+
+      if (!email || !password) {
+        showError('Please enter your email and password.');
+        return;
+      }
+
+      const btn = document.getElementById('submit-btn');
+      btn.textContent = 'Signing in…';
+      btn.disabled = true;
+
+      const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+
+      if (error) {
+        btn.textContent = 'Sign In';
+        btn.disabled = false;
+
+        if (error.message.toLowerCase().includes('invalid') ||
+            error.message.toLowerCase().includes('credentials')) {
+          showError('Incorrect email or password. Please try again.');
+        } else if (error.message.toLowerCase().includes('confirmed')) {
+          showError('Please verify your email before signing in. Check your inbox.');
+        } else {
+          showError(error.message);
+        }
+        return;
+      }
+
+      // Signed in — redirect to profile/dashboard
+      window.location.href = 'profile-setup.html';
+    });
+  </script>
 </body>
 </html>
