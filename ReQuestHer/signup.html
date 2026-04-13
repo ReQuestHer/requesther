@@ -17,7 +17,6 @@
       --error: #c0392b;
       --error-bg: #fdf0ef;
       --error-border: #e8b4b0;
-      --success: #2e7d52;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
@@ -38,7 +37,6 @@
       font-family: 'Playfair Display', serif;
       font-size: 26px;
       letter-spacing: 2px;
-      color: var(--text-main);
     }
     a {
       text-decoration: none;
@@ -60,15 +58,12 @@
       font-family: 'Playfair Display', serif;
       margin-bottom: 10px;
       font-size: 34px;
-      color: var(--text-main);
     }
     .subtitle {
       color: var(--text-muted);
       margin-bottom: 32px;
       font-size: 14px;
     }
-
-    /* Field wrapper */
     .field {
       margin-bottom: 16px;
       text-align: left;
@@ -104,11 +99,6 @@
       border-color: var(--error-border);
       background: var(--error-bg);
     }
-    .field input.input-error:focus {
-      box-shadow: 0 0 0 3px rgba(192, 57, 43, 0.1);
-    }
-
-    /* Inline field error */
     .field-error {
       display: none;
       font-size: 12px;
@@ -116,38 +106,18 @@
       margin-top: 6px;
       padding-left: 14px;
     }
-    .field-error.visible {
-      display: block;
-    }
-
-    /* Password rules hint */
+    .field-error.visible { display: block; }
     .password-rules {
       font-size: 12px;
       color: var(--text-muted);
       padding-left: 14px;
       margin-top: 6px;
-      line-height: 1.6;
+      line-height: 1.8;
       display: none;
     }
-    .password-rules.visible {
-      display: block;
-    }
-    .rule {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .rule::before {
-      content: '○';
-      font-size: 10px;
-      color: var(--border);
-    }
-    .rule.met::before {
-      content: '●';
-      color: var(--primary);
-    }
-
-    /* Global form error banner */
+    .password-rules.visible { display: block; }
+    .rule::before { content: '○'; font-size: 10px; color: var(--border); margin-right: 6px; }
+    .rule.met::before { content: '●'; color: var(--primary); }
     .form-error-banner {
       display: none;
       background: var(--error-bg);
@@ -159,10 +129,7 @@
       margin-bottom: 20px;
       text-align: left;
     }
-    .form-error-banner.visible {
-      display: block;
-    }
-
+    .form-error-banner.visible { display: block; }
     button[type="submit"] {
       width: 100%;
       background: var(--primary);
@@ -178,27 +145,9 @@
       margin-top: 8px;
       transition: background 0.2s, transform 0.1s;
     }
-    button[type="submit"]:hover {
-      background: var(--accent);
-    }
-    button[type="submit"]:active {
-      transform: scale(0.98);
-    }
-    button[type="submit"]:disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
-    }
-
-    .portal-footer {
-      margin-top: 28px;
-      font-size: 13px;
-      color: var(--text-muted);
-    }
-    .portal-footer a {
-      font-size: 13px;
-    }
-
-    /* Divider */
+    button[type="submit"]:hover { background: var(--accent); }
+    button[type="submit"]:active { transform: scale(0.98); }
+    button[type="submit"]:disabled { opacity: 0.6; cursor: not-allowed; }
     .divider {
       display: flex;
       align-items: center;
@@ -207,23 +156,21 @@
       color: var(--border);
       font-size: 12px;
     }
-    .divider::before,
-    .divider::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: var(--border);
+    .divider::before, .divider::after {
+      content: ''; flex: 1; height: 1px; background: var(--border);
     }
-
-    /* Success state */
+    .portal-footer {
+      margin-top: 28px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+    .portal-footer a { font-size: 13px; }
     .success-screen {
       display: none;
       text-align: center;
       padding: 20px 0;
     }
-    .success-screen.visible {
-      display: block;
-    }
+    .success-screen.visible { display: block; }
     .success-icon {
       width: 60px;
       height: 60px;
@@ -234,6 +181,7 @@
       justify-content: center;
       margin: 0 auto 20px;
       font-size: 26px;
+      color: white;
     }
     .success-screen h2 {
       font-family: 'Playfair Display', serif;
@@ -243,24 +191,8 @@
     .success-screen p {
       color: var(--text-muted);
       font-size: 14px;
-      margin-bottom: 28px;
-    }
-    .btn-continue {
-      display: inline-block;
-      background: var(--primary);
-      color: white;
-      padding: 14px 36px;
-      border-radius: 30px;
-      font-size: 13px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      cursor: pointer;
-      border: none;
-      font-family: 'Inter', sans-serif;
-      transition: background 0.2s;
-    }
-    .btn-continue:hover {
-      background: var(--accent);
+      margin-bottom: 16px;
+      line-height: 1.6;
     }
   </style>
 </head>
@@ -272,16 +204,13 @@
 
   <section class="portal-wrapper">
 
-    <!-- Sign Up Form -->
     <div id="signup-form-section">
       <h1>Create Account</h1>
       <p class="subtitle">Join ReQuest Her and access your personalised portal</p>
 
-      <!-- Global error banner (e.g. duplicate email) -->
       <div class="form-error-banner" id="global-error"></div>
 
       <form id="signup-form" novalidate>
-
         <div class="field">
           <label for="email">Email Address</label>
           <input type="email" id="email" placeholder="you@example.com" autocomplete="email" />
@@ -318,34 +247,31 @@
     <!-- Success Screen -->
     <div class="success-screen" id="success-screen">
       <div class="success-icon">✓</div>
-      <h2>Welcome aboard!</h2>
-      <p>Your account has been created. Let's set up your profile.</p>
-      <button class="btn-continue" onclick="window.location.href='profile-setup.html'">Set Up My Profile →</button>
+      <h2>Welcome to ReQuest Her!</h2>
+      <p>Your account has been created. We've sent a confirmation email to <strong id="confirmed-email"></strong>.</p>
+      <p>Please check your inbox and click the link to verify your account, then <a href="portal.html">sign in here</a>.</p>
     </div>
 
   </section>
 
+  <!-- Supabase SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script>
-    // Simulated list of existing emails (replace with real backend check)
-    const existingEmails = ['test@example.com', 'hello@requesther.com'];
+    const SUPABASE_URL = 'https://qqyiiytznfbfqotiscqx.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFxeWlpeXR6bmZiZnFvdGlzY3F4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzYwODMyOTgsImV4cCI6MjA5MTY1OTI5OH0.8VZzqBVw5FWCuEIw0WfRuyyXc8LaM1x4OtNN3whQTFs';
+    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
     const form = document.getElementById('signup-form');
     const emailInput = document.getElementById('email');
     const passwordInput = document.getElementById('password');
     const confirmInput = document.getElementById('confirm-password');
-
     const globalError = document.getElementById('global-error');
     const emailError = document.getElementById('email-error');
     const passwordError = document.getElementById('password-error');
     const confirmError = document.getElementById('confirm-error');
     const passwordRules = document.getElementById('password-rules');
 
-    // Show password rules on focus
-    passwordInput.addEventListener('focus', () => {
-      passwordRules.classList.add('visible');
-    });
-
-    // Live password rule checking
+    passwordInput.addEventListener('focus', () => passwordRules.classList.add('visible'));
     passwordInput.addEventListener('input', () => {
       const val = passwordInput.value;
       toggleRule('rule-length', val.length >= 8);
@@ -354,12 +280,9 @@
     });
 
     function toggleRule(id, met) {
-      const el = document.getElementById(id);
-      if (met) el.classList.add('met');
-      else el.classList.remove('met');
+      document.getElementById(id).classList.toggle('met', met);
     }
 
-    // Clear errors on input
     emailInput.addEventListener('input', () => clearFieldError(emailInput, emailError));
     passwordInput.addEventListener('input', () => clearFieldError(passwordInput, passwordError));
     confirmInput.addEventListener('input', () => clearFieldError(confirmInput, confirmError));
@@ -390,7 +313,7 @@
       return errors;
     }
 
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
 
       const email = emailInput.value.trim();
@@ -398,38 +321,25 @@
       const confirm = confirmInput.value;
       let valid = true;
 
-      // Validate email
       if (!email) {
         showFieldError(emailInput, emailError, 'Please enter your email address.');
         valid = false;
       } else if (!isValidEmail(email)) {
         showFieldError(emailInput, emailError, 'Please enter a valid email address.');
         valid = false;
-      } else if (existingEmails.includes(email.toLowerCase())) {
-        // Duplicate email — global banner
-        globalError.textContent = 'An account with this email already exists.';
-        globalError.classList.add('visible');
-        emailInput.classList.add('input-error');
-        valid = false;
       }
 
-      // Validate password
       const pwErrors = validatePassword(password);
       if (!password) {
         showFieldError(passwordInput, passwordError, 'Please enter a password.');
         passwordRules.classList.add('visible');
         valid = false;
       } else if (pwErrors.length > 0) {
-        showFieldError(
-          passwordInput,
-          passwordError,
-          `Password must include: ${pwErrors.join(', ')}.`
-        );
+        showFieldError(passwordInput, passwordError, `Password must include: ${pwErrors.join(', ')}.`);
         passwordRules.classList.add('visible');
         valid = false;
       }
 
-      // Validate confirm password
       if (!confirm) {
         showFieldError(confirmInput, confirmError, 'Please confirm your password.');
         valid = false;
@@ -440,15 +350,38 @@
 
       if (!valid) return;
 
-      // All good — simulate account creation
       const btn = document.getElementById('submit-btn');
       btn.textContent = 'Creating account…';
       btn.disabled = true;
 
-      setTimeout(() => {
-        document.getElementById('signup-form-section').style.display = 'none';
-        document.getElementById('success-screen').classList.add('visible');
-      }, 1000);
+      const { data, error } = await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+          emailRedirectTo: window.location.origin + '/profile-setup.html'
+        }
+      });
+
+      if (error) {
+        btn.textContent = 'Create My Account';
+        btn.disabled = false;
+
+        if (error.message.toLowerCase().includes('already registered') ||
+            error.message.toLowerCase().includes('already exists')) {
+          globalError.textContent = 'An account with this email already exists.';
+          globalError.classList.add('visible');
+          emailInput.classList.add('input-error');
+        } else {
+          globalError.textContent = error.message;
+          globalError.classList.add('visible');
+        }
+        return;
+      }
+
+      // Success
+      document.getElementById('confirmed-email').textContent = email;
+      document.getElementById('signup-form-section').style.display = 'none';
+      document.getElementById('success-screen').classList.add('visible');
     });
   </script>
 </body>
