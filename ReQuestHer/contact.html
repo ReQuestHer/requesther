@@ -1,176 +1,232 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contact – ReQuest Her</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — RequestHer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --mauve: #9b7fa6;
+    --mauve-deep: #7a5f8a;
+    --mauve-light: #f0eaf4;
+    --mauve-subtle: #f7f3f9;
+    --grey-light: #f4f5f7;
+    --grey-border: #e5e7eb;
+    --bg: #fafafa;
+    --dark: #1f1f2e;
+    --mid: #6b7280;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--dark);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  nav {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.1rem 6%;
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(250,250,250,0.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--grey-border);
+  }
+  .logo { font-size: 1.2rem; font-weight: 700; color: var(--dark); letter-spacing: -0.04em; }
+  .logo .q { color: var(--mauve); }
+  .nav-links { display: flex; gap: 2rem; align-items: center; }
+  .nav-links a { font-size: 0.84rem; font-weight: 400; color: var(--mid); text-decoration: none; letter-spacing: -0.01em; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--dark); }
+  .nav-cta { background: var(--dark) !important; color: white !important; padding: 0.5rem 1.1rem !important; border-radius: 6px; font-weight: 500 !important; }
+  .nav-cta:hover { background: var(--mauve-deep) !important; color: white !important; }
 
-  <style>
-    :root {
-      --primary: #c97c9e;
-      --accent: #8f4f6f;
-      --bg-main: #f7f3f5;
-      --bg-soft: #fbf8fa;
-      --border-soft: #d8cfd4;
-      --text-main: #3a2a32;
-      --text-muted: #6f5a64;
-    }
+  .page-hero {
+    padding: 5rem 6% 4rem;
+    border-bottom: 1px solid var(--grey-border);
+  }
+  .tag {
+    font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--mauve); margin-bottom: 0.75rem;
+  }
+  h1 {
+    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    line-height: 1.12; font-weight: 700;
+    letter-spacing: -0.04em; margin-bottom: 1rem;
+  }
+  .hero-sub {
+    font-size: 1rem; color: var(--mid); line-height: 1.7;
+    max-width: 480px; font-weight: 400;
+  }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+  .section { padding: 5rem 6%; }
+  .section-inner { max-width: 1100px; margin: 0 auto; }
 
-    body {
-      font-family: 'Inter', sans-serif;
-      background: var(--bg-main);
-      color: var(--text-main);
-    }
+  .contact-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start;
+    margin-top: 3rem;
+  }
 
-    /* Top Bar */
-    .top-bar {
-      background: var(--bg-soft);
-      padding: 10px 40px;
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      display: flex;
-      justify-content: space-between;
-    }
+  h2 {
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
+    font-weight: 700; line-height: 1.2;
+    letter-spacing: -0.04em; margin-bottom: 1rem;
+  }
+  .body-text { font-size: 0.92rem; color: var(--mid); line-height: 1.8; }
 
-    /* Navigation */
-    header {
-      border-bottom: 1px solid var(--border-soft);
-    }
+  .contact-items { margin-top: 2rem; display: flex; flex-direction: column; gap: 1rem; }
+  .contact-item {
+    display: flex; align-items: flex-start; gap: 0.85rem;
+    padding: 1rem 1.25rem;
+    background: white; border: 1px solid var(--grey-border); border-radius: 10px;
+  }
+  .ci-icon {
+    width: 34px; height: 34px; background: var(--mauve-subtle);
+    border-radius: 7px; display: flex; align-items: center;
+    justify-content: center; font-size: 0.9rem; flex-shrink: 0;
+  }
+  .ci-label { font-size: 0.7rem; color: var(--mid); margin-bottom: 2px; text-transform: uppercase; letter-spacing: 0.06em; }
+  .ci-value { font-size: 0.88rem; font-weight: 500; letter-spacing: -0.01em; }
 
-    .nav {
-      max-width: 1200px;
-      margin: auto;
-      padding: 24px 40px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+  .card {
+    background: white; border: 1px solid var(--grey-border);
+    border-radius: 12px; padding: 2rem;
+  }
+  .card h3 { font-size: 1rem; font-weight: 700; letter-spacing: -0.03em; margin-bottom: 1.5rem; }
 
-    .logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 28px;
-      letter-spacing: 3px;
-    }
+  .fields { display: flex; flex-direction: column; gap: 0.75rem; }
+  .fields input, .fields select, .fields textarea {
+    border: 1px solid var(--grey-border); border-radius: 7px;
+    padding: 0.7rem 0.9rem; font-family: 'Inter', sans-serif;
+    font-size: 0.86rem; background: var(--bg); color: var(--dark);
+    outline: none; letter-spacing: -0.01em; transition: border-color 0.2s;
+    width: 100%;
+  }
+  .fields input:focus, .fields select:focus, .fields textarea:focus { border-color: var(--mauve); background: white; }
+  .fields textarea { resize: vertical; min-height: 100px; }
+  .fields button {
+    background: var(--dark); color: white; border: none;
+    padding: 0.72rem; border-radius: 7px;
+    font-family: 'Inter', sans-serif; font-size: 0.87rem; font-weight: 600;
+    cursor: pointer; margin-top: 0.2rem; letter-spacing: -0.01em;
+    transition: background 0.2s;
+  }
+  .fields button:hover { background: var(--mauve-deep); }
 
-    .nav ul {
-      list-style: none;
-      display: flex;
-      gap: 24px;
-    }
+  .success-msg {
+    display: none; background: var(--mauve-light); color: var(--mauve-deep);
+    padding: 0.75rem 1rem; border-radius: 7px;
+    font-size: 0.87rem; font-weight: 500; margin-top: 0.5rem;
+  }
 
-    .nav a {
-      text-decoration: none;
-      font-size: 13px;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      color: var(--text-main);
-    }
+  footer {
+    padding: 2.25rem 6%; border-top: 1px solid var(--grey-border);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .f-logo { font-size: 0.95rem; font-weight: 700; color: var(--dark); letter-spacing: -0.04em; }
+  .f-logo span { color: var(--mauve); }
+  footer p { font-size: 0.76rem; color: var(--mid); }
 
-    /* Page Hero */
-    .page-hero {
-      background: var(--primary);
-      padding: 80px 40px;
-      text-align: center;
-      color: white;
-    }
-
-    .page-hero h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 56px;
-      margin-bottom: 12px;
-    }
-
-    .page-hero p {
-      font-size: 14px;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      opacity: 0.9;
-    }
-
-    /* Content */
-    .content {
-      max-width: 900px;
-      margin: 80px auto;
-      padding: 0 40px;
-      line-height: 1.8;
-    }
-
-    .content h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 36px;
-      margin-bottom: 20px;
-    }
-
-    .content p {
-      color: var(--text-muted);
-      margin-bottom: 24px;
-    }
-
-    /* Responsive */
-    @media (max-width: 900px) {
-      .nav ul {
-        display: none;
-      }
-
-      .page-hero h1 {
-        font-size: 42px;
-      }
-    }
-  </style>
+  @media (max-width: 768px) {
+    .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .nav-links { display: none; }
+    footer { flex-direction: column; gap: 0.75rem; text-align: center; }
+  }
+</style>
 </head>
 <body>
 
-   <!-- Top Bar -->
-  <div class="top-bar">
-    <span>The free guide · add your creative lead magnet</span>
-    <div class="top-links">
-      <a href="portal.html">Customer Portal</a>
-      <a href="questhers.html">QuestHers Login</a>
+<nav>
+  <a href="index.html" class="logo">Re<span class="q">Q</span>uestHer</a>
+  <div class="nav-links">
+    <a href="about.html">About</a>
+    <a href="services.html">Services</a>
+    <a href="contact.html">Contact</a>
+    <a href="index.html#waitlist" class="nav-cta">Join Waitlist</a>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="tag">Contact</div>
+  <h1>Get in touch.</h1>
+  <p class="hero-sub">Questions about the platform, provider applications, or press inquiries — we'd love to hear from you.</p>
+</div>
+
+<section class="section">
+  <div class="section-inner">
+    <div class="contact-grid">
+      <div>
+        <div class="tag">Reach Us</div>
+        <h2>We're here to help.</h2>
+        <p class="body-text">Whether you're a potential client curious about safety features, a provider interested in joining our network, or a journalist covering women-focused tech — reach out and we'll get back to you quickly.</p>
+        <div class="contact-items">
+          <div class="contact-item">
+            <div class="ci-icon">📧</div>
+            <div>
+              <div class="ci-label">General Inquiries</div>
+              <div class="ci-value">hello@requesther.com</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="ci-icon">🏙️</div>
+            <div>
+              <div class="ci-label">Launching In</div>
+              <div class="ci-value">Chicago, Illinois</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="ci-icon">📰</div>
+            <div>
+              <div class="ci-label">Press & Media</div>
+              <div class="ci-value">press@requesther.com</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="card">
+          <h3>Send us a message</h3>
+          <div class="fields" id="contact-form">
+            <input type="text" id="contact-name" placeholder="Your name" />
+            <input type="email" id="contact-email" placeholder="Email address" />
+            <select id="contact-topic">
+              <option value="" disabled selected>Topic</option>
+              <option>General question</option>
+              <option>Provider inquiry</option>
+              <option>Press / media</option>
+              <option>Partnership</option>
+              <option>Other</option>
+            </select>
+            <textarea id="contact-message" placeholder="Your message"></textarea>
+            <button onclick="handleContact()">Send Message</button>
+          </div>
+          <div class="success-msg" id="contact-success">Message received — we'll be in touch soon.</div>
+        </div>
+      </div>
     </div>
   </div>
+</section>
 
-  <!-- Navigation -->
-  <header>
-    <nav class="nav">
-      <div class="logo">ReQuest Her</div>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="services.html">Services</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
+<footer>
+  <div class="f-logo">Re<span>Q</span>uestHer</div>
+  <p>Launching in Chicago · 2025</p>
+  <p>requesther.com</p>
+</footer>
 
-  <!-- Page Hero -->
-  <section class="page-hero">
-    <h1>Contact</h1>
-    <p>Who we are & what we believe</p>
-  </section>
-
-  <!-- Main Content -->
-  <section class="content">
-    <h2>Our Story</h2>
-    <p>
-      We are a creative studio focused on thoughtful branding, strategy,
-      and design for modern businesses looking to grow with intention.
-    </p>
-
-    <p>
-      Our work blends aesthetics and clarity to help brands feel aligned,
-      confident, and timeless.
-    </p>
-  </section>
+<script>
+  function handleContact() {
+    const name = document.getElementById('contact-name').value;
+    const email = document.getElementById('contact-email').value;
+    const topic = document.getElementById('contact-topic').value;
+    const message = document.getElementById('contact-message').value;
+    if (!name || !email || !topic || !message) return;
+    document.getElementById('contact-form').style.display = 'none';
+    document.getElementById('contact-success').style.display = 'block';
+    console.log('Contact form:', { name, email, topic, message });
+  }
+</script>
 
 </body>
 </html>

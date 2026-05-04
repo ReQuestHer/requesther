@@ -1,176 +1,206 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Services – ReQuest Her</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Services — RequestHer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --mauve: #9b7fa6;
+    --mauve-deep: #7a5f8a;
+    --mauve-light: #f0eaf4;
+    --mauve-subtle: #f7f3f9;
+    --grey-light: #f4f5f7;
+    --grey-border: #e5e7eb;
+    --bg: #fafafa;
+    --dark: #1f1f2e;
+    --mid: #6b7280;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--dark);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  nav {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.1rem 6%;
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(250,250,250,0.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--grey-border);
+  }
+  .logo { font-size: 1.2rem; font-weight: 700; color: var(--dark); letter-spacing: -0.04em; }
+  .logo .q { color: var(--mauve); }
+  .nav-links { display: flex; gap: 2rem; align-items: center; }
+  .nav-links a { font-size: 0.84rem; font-weight: 400; color: var(--mid); text-decoration: none; letter-spacing: -0.01em; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--dark); }
+  .nav-cta { background: var(--dark) !important; color: white !important; padding: 0.5rem 1.1rem !important; border-radius: 6px; font-weight: 500 !important; }
+  .nav-cta:hover { background: var(--mauve-deep) !important; color: white !important; }
 
-  <style>
-    :root {
-      --primary: #c97c9e;
-      --accent: #8f4f6f;
-      --bg-main: #f7f3f5;
-      --bg-soft: #fbf8fa;
-      --border-soft: #d8cfd4;
-      --text-main: #3a2a32;
-      --text-muted: #6f5a64;
-    }
+  .page-hero {
+    padding: 5rem 6% 4rem;
+    border-bottom: 1px solid var(--grey-border);
+  }
+  .tag {
+    font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--mauve); margin-bottom: 0.75rem;
+  }
+  h1 {
+    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    line-height: 1.12; font-weight: 700;
+    letter-spacing: -0.04em; margin-bottom: 1rem;
+  }
+  .hero-sub {
+    font-size: 1rem; color: var(--mid); line-height: 1.7;
+    max-width: 540px; font-weight: 400;
+  }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+  .section { padding: 5rem 6%; }
+  .section-inner { max-width: 1100px; margin: 0 auto; }
 
-    body {
-      font-family: 'Inter', sans-serif;
-      background: var(--bg-main);
-      color: var(--text-main);
-    }
+  h2 {
+    font-size: clamp(1.6rem, 2.5vw, 2.1rem);
+    font-weight: 700; line-height: 1.2;
+    letter-spacing: -0.04em; margin-bottom: 0.85rem;
+  }
+  .sub { color: var(--mid); font-size: 0.95rem; line-height: 1.7; max-width: 480px; }
 
-    /* Top Bar */
-    .top-bar {
-      background: var(--bg-soft);
-      padding: 10px 40px;
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      display: flex;
-      justify-content: space-between;
-    }
+  .services-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-top: 3rem;
+  }
+  .service-card {
+    background: white; border: 1px solid var(--grey-border);
+    border-radius: 10px; padding: 1.5rem;
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+  .service-card:hover { box-shadow: 0 6px 22px rgba(0,0,0,0.07); transform: translateY(-2px); }
+  .s-icon {
+    width: 40px; height: 40px; background: var(--mauve-subtle);
+    border-radius: 8px; display: flex; align-items: center;
+    justify-content: center; font-size: 1rem; margin-bottom: 1rem;
+  }
+  .service-card h3 { font-size: 0.9rem; font-weight: 600; margin-bottom: 0.4rem; letter-spacing: -0.02em; }
+  .service-card p { font-size: 0.81rem; color: var(--mid); line-height: 1.6; }
 
-    /* Navigation */
-    header {
-      border-bottom: 1px solid var(--border-soft);
-    }
+  .cta-band {
+    background: var(--dark); padding: 5rem 6%;
+    text-align: center;
+  }
+  .cta-band .tag { color: var(--mauve); }
+  .cta-band h2 { color: white; margin: 0.75rem auto 1.25rem; max-width: 500px; }
+  .cta-band p { color: rgba(255,255,255,0.5); font-size: 0.92rem; margin-bottom: 2rem; }
+  .cta-btn {
+    display: inline-block; background: var(--mauve); color: white;
+    padding: 0.8rem 1.75rem; border-radius: 7px;
+    font-size: 0.87rem; font-weight: 600; text-decoration: none;
+    letter-spacing: -0.01em; transition: background 0.2s;
+  }
+  .cta-btn:hover { background: var(--mauve-deep); }
 
-    .nav {
-      max-width: 1200px;
-      margin: auto;
-      padding: 24px 40px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+  footer {
+    padding: 2.25rem 6%; border-top: 1px solid var(--grey-border);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .f-logo { font-size: 0.95rem; font-weight: 700; color: var(--dark); letter-spacing: -0.04em; }
+  .f-logo span { color: var(--mauve); }
+  footer p { font-size: 0.76rem; color: var(--mid); }
 
-    .logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 28px;
-      letter-spacing: 3px;
-    }
-
-    .nav ul {
-      list-style: none;
-      display: flex;
-      gap: 24px;
-    }
-
-    .nav a {
-      text-decoration: none;
-      font-size: 13px;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      color: var(--text-main);
-    }
-
-    /* Page Hero */
-    .page-hero {
-      background: var(--primary);
-      padding: 80px 40px;
-      text-align: center;
-      color: white;
-    }
-
-    .page-hero h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 56px;
-      margin-bottom: 12px;
-    }
-
-    .page-hero p {
-      font-size: 14px;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      opacity: 0.9;
-    }
-
-    /* Content */
-    .content {
-      max-width: 900px;
-      margin: 80px auto;
-      padding: 0 40px;
-      line-height: 1.8;
-    }
-
-    .content h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 36px;
-      margin-bottom: 20px;
-    }
-
-    .content p {
-      color: var(--text-muted);
-      margin-bottom: 24px;
-    }
-
-    /* Responsive */
-    @media (max-width: 900px) {
-      .nav ul {
-        display: none;
-      }
-
-      .page-hero h1 {
-        font-size: 42px;
-      }
-    }
-  </style>
+  @media (max-width: 900px) {
+    .services-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 768px) {
+    .services-grid { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    footer { flex-direction: column; gap: 0.75rem; text-align: center; }
+  }
+</style>
 </head>
 <body>
 
-   <!-- Top Bar -->
-  <div class="top-bar">
-    <span>The free guide · add your creative lead magnet</span>
-    <div class="top-links">
-      <a href="portal.html">Customer Portal</a>
-      <a href="questhers.html">QuestHers Login</a>
+<nav>
+  <a href="index.html" class="logo">Re<span class="q">Q</span>uestHer</a>
+  <div class="nav-links">
+    <a href="about.html">About</a>
+    <a href="services.html">Services</a>
+    <a href="contact.html">Contact</a>
+    <a href="index.html#waitlist" class="nav-cta">Join Waitlist</a>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="tag">Services</div>
+  <h1>Everything you need,<br>done right.</h1>
+  <p class="hero-sub">Browse our categories of vetted, background-checked women service providers — available across Chicago.</p>
+</div>
+
+<section class="section">
+  <div class="section-inner">
+    <div class="tag">Categories</div>
+    <h2>What we offer</h2>
+    <p class="sub">Every provider on RequestHer is verified and background-checked. All communication and payment happen in-app.</p>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="s-icon">🔧</div>
+        <h3>Home Repair &amp; Maintenance</h3>
+        <p>Plumbing, electrical, carpentry, and general repairs by skilled women tradespeople.</p>
+      </div>
+      <div class="service-card">
+        <div class="s-icon">✨</div>
+        <h3>Cleaning &amp; Organization</h3>
+        <p>Deep cleaning, decluttering, and organizational systems tailored to your space.</p>
+      </div>
+      <div class="service-card">
+        <div class="s-icon">💅</div>
+        <h3>Beauty &amp; Wellness</h3>
+        <p>Hair, nails, massage, skincare, and wellness services in your home or theirs.</p>
+      </div>
+      <div class="service-card">
+        <div class="s-icon">💻</div>
+        <h3>Tech Support</h3>
+        <p>Device setup, troubleshooting, smart home installation, and tech tutoring.</p>
+      </div>
+      <div class="service-card">
+        <div class="s-icon">🏋️</div>
+        <h3>Personal Training &amp; Fitness</h3>
+        <p>In-home personal training, yoga, pilates, and custom workout programming.</p>
+      </div>
+      <div class="service-card">
+        <div class="s-icon">📚</div>
+        <h3>Tutoring &amp; Education</h3>
+        <p>Academic tutoring, test prep, language instruction, and skills coaching.</p>
+      </div>
+      <div class="service-card">
+        <div class="s-icon">🐾</div>
+        <h3>Pet Care</h3>
+        <p>Dog walking, pet sitting, grooming, and in-home care for your animals.</p>
+      </div>
+      <div class="service-card">
+        <div class="s-icon">➕</div>
+        <h3>More Coming Soon</h3>
+        <p>We're always adding new categories. Have a skill to offer? Apply to join our network.</p>
+      </div>
     </div>
   </div>
+</section>
 
-  <!-- Navigation -->
-  <header>
-    <nav class="nav">
-      <div class="logo">ReQuest Her</div>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="services.html">Services</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
+<div class="cta-band">
+  <div class="tag">Ready?</div>
+  <h2>Be first in line.</h2>
+  <p>Join the waitlist and get early access when we launch in Chicago.</p>
+  <a href="index.html#waitlist" class="cta-btn">Join the Waitlist</a>
+</div>
 
-  <!-- Page Hero -->
-  <section class="page-hero">
-    <h1>Services</h1>
-    <p>Who we are & what we believe</p>
-  </section>
-
-  <!-- Main Content -->
-  <section class="content">
-    <h2>Our Story</h2>
-    <p>
-      We are a creative studio focused on thoughtful branding, strategy,
-      and design for modern businesses looking to grow with intention.
-    </p>
-
-    <p>
-      Our work blends aesthetics and clarity to help brands feel aligned,
-      confident, and timeless.
-    </p>
-  </section>
+<footer>
+  <div class="f-logo">Re<span>Q</span>uestHer</div>
+  <p>Launching in Chicago · 2025</p>
+  <p>requesther.com</p>
+</footer>
 
 </body>
 </html>
