@@ -233,7 +233,9 @@
   const SUPABASE_URL = 'https://qqyiiytznfbfqotiscqx.supabase.co';
   const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFxeWlpeXR6bmZiZnFvdGlzY3F4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzYwODMyOTgsImV4cCI6MjA5MTY1OTI5OH0.8VZzqBVw5FWCuEIw0WfRuyyXc8LaM1x4OtNN3whQTFs';
   const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-
+supabase.auth.getSession().then(({ data: { session } }) => {
+  if (session) window.location.href = 'profile-setup.html';
+});
   const form = document.getElementById('signup-form');
   const emailInput = document.getElementById('email');
   const passwordInput = document.getElementById('password');
