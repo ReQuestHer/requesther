@@ -152,6 +152,26 @@
 
     <div class="portal-footer">
       <span><a href="#">Forgot password?</a></span>
+      // Add this to portal.html's <script> block
+document.querySelector('a[href="#"]').addEventListener('click', async (e) => {
+  e.preventDefault();
+  const email = emailInput.value.trim();
+  if (!email) { showError('Enter your email above first, then click Forgot Password.'); return; }
+
+  const { error } = await supabase.auth.resetPasswordForEmail(email, {
+    redirectTo: window.location.origin + '/reset-password.html'
+  });
+
+  if (!error) {
+    globalError.style.background = '#f0eaf4';
+    globalError.style.borderColor = '#9b7fa6';
+    globalError.style.color = '#7a5f8a';
+    globalError.textContent = 'Password reset email sent — check your inbox.';
+    globalError.classList.add('visible');
+  } else {
+    showError(error.message);
+  }
+});
       <span>Don't have an account? <a href="signup.html">Create one</a></span>
     </div>
   </div>
